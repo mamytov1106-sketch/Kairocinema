@@ -1,0 +1,21 @@
+
+import os
+import telebot
+
+TOKEN = os.getenv("BOT_TOKEN")
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.reply_to(
+        message,
+        "🎬 Добро пожаловать в Kairocinema!\n\n"
+        "Твой мир кино в одном месте.\n"
+        "Скоро здесь появится каталог фильмов."
+    )
+
+@bot.message_handler(commands=["help"])
+def help_command(message):
+    bot.reply_to(message, "Нажми /start, чтобы открыть Kairocinema.")
+
+bot.infinity_polling()
