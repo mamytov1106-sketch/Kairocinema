@@ -4,9 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kairocinema</title>
+  <style>
+    body {
+      margin: 0;
+      background: #101010;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      padding: 20px;
+      background: #1c1c1c;
+      color: #e50914;
+      font-size: 26px;
+      font-weight: bold;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 15px;
+    }
+    video {
+      width: 100%;
+      background: black;
+      border-radius: 10px;
+    }
+    button, .download {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #e50914;
+      color: white;
+      border: 0;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    input {
+      width: 95%;
+      padding: 12px;
+      margin: 12px 0;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎬 Kairocinema</h1>
-  <p>Твой мир кино в одном месте.</p>
+  <header>🎬 Kairocinema</header>
+  <main>
+    <h2>Смотреть фильмы</h2>
+    <p>Вставь прямую ссылку на видео:</p>
+    <input id="videoUrl" placeholder="Ссылка на MP4">
+    <button onclick="playMovie()">Открыть фильм</button>
+
+    <video id="player" controls playsinline></video>
+    <br>
+    <a id="download" class="download" href="#" download>
+      Скачать фильм
+    </a>
+  </main>
+
+  <script>
+    function playMovie() {
+      const url = document.getElementById('videoUrl').value.trim();
+      if (!url) {
+        alert('Сначала вставь ссылку на видео');
+        return;
+      }
+
+      const player = document.getElementById('player');
+      player.src = url;
+      player.load();
+      document.getElementById('download').href = url;
+    }
+  </script>
 </body>
 </html>
